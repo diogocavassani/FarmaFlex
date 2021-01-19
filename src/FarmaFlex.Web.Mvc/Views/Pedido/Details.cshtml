@@ -1,0 +1,65 @@
+﻿@model APIFarmaFlex.Domain.Models.Pedido
+
+<div>
+    <h4>Pedido</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.PedidoId)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.PedidoId)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Cliente.Nome)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Cliente.Nome)
+        </dd>
+        <dt class="col-sm-2">
+            Forma de Pagamento
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.FormaPagamento.Descricao)
+        </dd>
+        <dt class="col-sm-2">
+            Observação do Pedido
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Observacao)
+        </dd>
+        <dt class="col-sm-2">
+            Data do Pedido
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DataPedido)
+        </dd>
+        <dt class="col-sm-2">
+            Data ultima alteração de status
+        </dt>
+        <dd class="col-sm-10">
+            @if (Model.DataUltimaAlteracao != null)
+            {
+                @Html.DisplayFor(model => model.DataUltimaAlteracao)
+            }
+        </dd>
+        <dt class="col-sm-2">
+            Total Pedido
+        </dt>
+        <dd class="col-sm-10">
+            @{ var valor = Model.Total.ToString("C");}
+            @Html.DisplayFor(model => valor)
+        </dd>
+        <dt class="col-sm-2">
+            Status Pedido
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.StatusPedido)
+        </dd>
+    </dl>
+</div>
+<partial name="_listaProdutos" />
+<div>
+
+    <a asp-action="Index" class="btn btn-danger fa fa-arrow-left fa-2x text-decoration-none" title="Voltar"></a>
+</div>

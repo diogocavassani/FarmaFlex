@@ -1,0 +1,98 @@
+﻿@model IEnumerable<APIFarmaFlex.Domain.Models.Pedido>
+@using APIFarmaFlex.Domain.Models
+
+
+
+<h1>Pedidos</h1>
+@await Html.PartialAsync("PartialViews/_relatorioStatusPedido")
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Codigo
+            </th>
+            <th>
+                Cliente
+            </th>
+            <th>
+                Forma de Pagamento
+            </th>
+            <th>
+                Data do Pedido
+            </th>
+            <th>
+                Total
+            </th>
+            <th>
+                Observação
+            </th>
+            <th>
+                Status
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null)
+        {
+            @foreach (var item in Model)
+            {
+
+                switch (item.StatusPedido)
+                {
+                    case StatusEnumPedido.Pendente:
+                        <tr class="table-danger">
+                            @await Html.PartialAsync("_listaPedidos", item)
+                            <td>
+                                <a asp-action="Details" asp-route-id="@item.PedidoId" class="btn btn-success fa fa-search fa-2x text-decoration-none" title="Detalhes"></a>
+                                <a asp-action="AlterarStatus" asp-route-id="@item.PedidoId" class="btn btn-dark fa fa-shopping-cart fa-2x text-decoration-none" title="Iniciar"></a>
+                                <a asp-action="Cancelar" asp-route-id="@item.PedidoId" class="btn btn-danger fa fa-times fa-2x text-decoration-none" title="Cancelar"></a>
+                            </td>
+                        </tr>
+                        break;
+                    case StatusEnumPedido.Iniciado:
+                        <tr class="table-primary">
+                            @await Html.PartialAsync("_listaPedidos", item)
+                            <td>
+                                <a asp-action="Details" asp-route-id="@item.PedidoId" class="btn btn-success fa fa-search fa-2x text-decoration-none" title="Detalhes"></a>
+                                <a asp-action="AlterarStatus" asp-route-id="@item.PedidoId" class="btn btn-dark fa fa-road fa-2x text-decoration-none" title="Entregar"></a>
+                                <a asp-action="Cancelar" asp-route-id="@item.PedidoId" class="btn btn-danger fa fa-times fa-2x text-decoration-none" title="Cancelar"></a>
+                            </td>
+                        </tr>
+                        break;
+                    case StatusEnumPedido.EmEntrega:
+                        <tr class="table-warning">
+                            @await Html.PartialAsync("_listaPedidos", item)
+                            <td>
+                                <a asp-action="Details" asp-route-id="@item.PedidoId" class="btn btn-success fa fa-search fa-2x text-decoration-none" title="Detalhes"></a>
+                                <a asp-action="AlterarStatus" asp-route-id="@item.PedidoId" class="btn btn-dark fa fa-thumbs-up fa-2x text-decoration-none" title="Finalizar"></a>
+                                <a asp-action="Cancelar" asp-route-id="@item.PedidoId" class="btn btn-danger fa fa-times fa-2x text-decoration-none" title="Cancelar"></a>
+                            </td>
+                        </tr>
+                        break;
+                    case StatusEnumPedido.Finalizado:
+                        <tr class="table-success">
+                            @await Html.PartialAsync("_listaPedidos", item)
+                            <td>
+                                <a asp-action="Details" asp-route-id="@item.PedidoId" class="btn btn-success fa fa-search fa-2x text-decoration-none" title="Detalhes"></a>
+                                <a asp-action="AlterarStatus" asp-route-id="@item.PedidoId" class="btn btn-dark fa fa-thumbs-up fa-2x text-decoration-none disabled" title="Finalizar"></a>
+                                <a asp-action="Cancelar" asp-route-id="@item.PedidoId" class="btn btn-danger fa fa-times fa-2x text-decoration-none disabled" title="Cancelar"></a>
+                            </td>
+                        </tr>
+                        break;
+                    case StatusEnumPedido.Cancelado:
+                        <tr class="table-active">
+                            @await Html.PartialAsync("_listaPedidos", item)
+                            <td>
+                                <a asp-action="Details" asp-route-id="@item.PedidoId" class="btn btn-success fa fa-search fa-2x text-decoration-none" title="Detalhes"></a>
+                                <a asp-action="Details" asp-route-id="@item.PedidoId" class="btn btn-success fa fa-times fa-2x text-decoration-none disabled"></a>
+                                <a asp-action="Details" asp-route-id="@item.PedidoId" class="btn btn-danger fa fa-times fa-2x text-decoration-none disabled"></a>
+                            </td>
+                        </tr>
+                        break;
+                }
+            }
+        }
+
+    </tbody>
+</table>

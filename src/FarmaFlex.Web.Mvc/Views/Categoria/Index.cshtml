@@ -1,0 +1,57 @@
+﻿@model IEnumerable<APIFarmaFlex.Domain.Models.Categoria>
+@using APIFarmaFlex.Domain.Enum
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Lista Categoria</h1>
+
+
+    <a class="btn btn-outline-success fa fa-plus text-decoration-none" asp-controller="Categoria" asp-action="Create">&emsp;Novo</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Descrição
+            </th>
+            <th>
+                Status
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null)
+        {
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Descricao)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.StatusCategoria)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.CategoriaId" class="btn btn-warning fa fa-pencil fa-2x text-decoration-none" title="Editar"></a>
+                        <a asp-action="Details" asp-route-id="@item.CategoriaId" class="btn btn-success fa fa-search fa-2x text-decoration-none" title="Detalhes"></a>
+                        <a asp-action="Delete" asp-route-id="@item.CategoriaId" class="btn btn-danger fa fa-trash fa-2x text-decoration-none" title="Inativar"></a>
+
+                        @if (item.StatusCategoria == APIFarmaFlex.Domain.Enum.StatusEnum.Ativo)
+                        {
+                            <a asp-action="AlterarStatus" asp-route-id="@item.CategoriaId" class="btn btn-dark fa fa-unlock-alt fa-2x text-decoration-none" title="Inativar"></a>
+                        }
+                        else
+                        {
+                            <a asp-action="AlterarStatus" asp-route-id="@item.CategoriaId" class="btn btn-dark fa fa-send fa-2x text-decoration-none" title="Ativar"></a>
+                        }
+
+                    </td>
+                </tr>
+            }
+        }
+
+    </tbody>
+</table>

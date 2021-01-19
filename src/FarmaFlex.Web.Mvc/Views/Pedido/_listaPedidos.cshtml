@@ -1,0 +1,26 @@
+﻿@model APIFarmaFlex.Domain.Models.Pedido
+@using APIFarmaFlex.Domain.Models
+
+
+<td>
+    @Html.DisplayFor(modelItem => Model.PedidoId)
+</td>
+<td>
+    @Html.DisplayFor(modelItem => Model.Cliente.Nome)
+</td>
+<td>
+    @Html.DisplayFor(modelItem => Model.FormaPagamento.Descricao)
+</td>
+<td>
+    @Html.DisplayFor(modelItem => Model.DataPedido)
+</td>
+<td>
+    @{ var total = Model.Total.ToString("C");}
+    @Html.DisplayFor(modelItem => total)
+</td>
+<td>
+    @Html.DisplayFor(modelItem => Model.Observacao)
+</td>
+<td>
+    @Html.DisplayFor(modelItem => Model.StatusPedido)
+</td>

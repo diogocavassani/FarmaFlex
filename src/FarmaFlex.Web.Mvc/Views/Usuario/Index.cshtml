@@ -1,0 +1,66 @@
+﻿@model IEnumerable<APIFarmaFlex.Domain.Models.Usuario>
+
+<h1>Lista Usuarios</h1>
+
+<a class="btn btn-outline-success fa fa-plus text-decoration-none" asp-controller="Usuario" asp-action="Create">&emsp;Novo</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Codigo
+            </th>
+            <th>
+                Nome
+            </th>
+            <th>
+                Email
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Senha)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Funcao)
+            </th>
+            <th>
+                Status
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null)
+        {
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UsuarioId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NomeUsuario)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Senha)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Funcao)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.StatusUsuario)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.UsuarioId" class="btn btn-warning fa fa-pencil fa-2x text-decoration-none" title="Editar"></a>
+                        <a asp-action="Details" asp-route-id="@item.UsuarioId" class="btn btn-success fa fa-search fa-2x text-decoration-none" title="Detalhes"></a>
+                        <a asp-action="Delete" asp-route-id="@item.UsuarioId" class="btn btn-danger fa fa-trash fa-2x text-decoration-none" title="Excluir"></a>
+                    </td>
+                </tr>
+            }
+
+        }
+
+    </tbody>
+</table>

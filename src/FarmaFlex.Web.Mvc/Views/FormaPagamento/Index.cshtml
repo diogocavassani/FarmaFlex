@@ -1,0 +1,55 @@
+﻿@model IEnumerable<APIFarmaFlex.Domain.Models.FormaPagamento>
+
+<h1>Lista Formas de Pagamento</h1>
+
+<a class="btn btn-outline-success fa fa-plus text-decoration-none" asp-controller="FormaPagamento" asp-action="Create">&emsp;Novo</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Codigo
+            </th>
+            <th>
+                Decrição
+            </th>
+            <th>
+                Status
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null)
+        {
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FormaPagamentoId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Descricao)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.StatusForma)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.FormaPagamentoId" class="btn btn-warning fa fa-pencil fa-2x text-decoration-none" title="Editar"></a>
+                        <a asp-action="Details" asp-route-id="@item.FormaPagamentoId" class="btn btn-success fa fa-search fa-2x text-decoration-none" title="Detalhes"></a>
+                        <a asp-action="Delete" asp-route-id="@item.FormaPagamentoId" class="btn btn-danger fa fa-trash fa-2x text-decoration-none" title="Excluir"></a>
+                        @if (item.StatusForma == APIFarmaFlex.Domain.Enum.StatusEnum.Ativo)
+                        {
+                            <a asp-action="AlterarStatus" asp-route-id="@item.FormaPagamentoId" class="btn btn-dark fa fa-unlock-alt fa-2x text-decoration-none" title="Inativar"></a>
+                        }
+                        else
+                        {
+                            <a asp-action="AlterarStatus" asp-route-id="@item.FormaPagamentoId" class="btn btn-dark fa fa-send fa-2x text-decoration-none" title="Ativar"></a>
+                        }
+                    </td>
+                </tr>
+            }
+        }
+
+    </tbody>
+</table>

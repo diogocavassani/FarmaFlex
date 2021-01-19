@@ -1,0 +1,32 @@
+﻿@model APIFarmaFlex.Domain.Models.Categoria
+
+<h3>Realmente deseja excluir?</h3>
+<div>
+    <h4>Categoria</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CategoriaId)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CategoriaId)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Descricao)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Descricao)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.StatusCategoria)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.StatusCategoria)
+        </dd>
+    </dl>
+
+    <form asp-action="Delete">
+        <a asp-action="Index" class="btn btn-danger fa fa-arrow-left fa-2x text-decoration-none" title="Voltar"></a>
+        <button type="submit" class="btn-success fa fa-trash fa-2x"></button>
+    </form>
+</div>

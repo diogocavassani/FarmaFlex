@@ -1,0 +1,38 @@
+﻿
+@model FarmaFlex.Web.Mvc.Services.DTO.UsuarioDTO
+@{
+    ViewData["Title"] = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+    <div class="container-login100">
+        <div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
+            <form asp-action="Login"class="login100-form validate-form justify-content-around" method="post">
+                <div class="wrap-input100 validate-input m-b-23" data-validate="Username is reauired">
+                    <span class="label-input100">Email</span>
+                    <input asp-for="Email" class="input100" type="text"  name="Email" id="Email"  placeholder="digite seu email">
+                    <span class="focus-input100" data-symbol="&#xf206;"></span>
+                </div>
+
+                <div class="wrap-input100 validate-input" data-validate="Password is required">
+                    <span class="label-input100">Password</span>
+                    <input asp-for="Senha" class="input100" type="password" name="Senha" id="Senha" placeholder="digite sua senha">
+                    <span class="focus-input100" data-symbol="&#xf190;"></span>
+                </div>
+                <div class="container-login100-form-btn p-5">
+                    <div class="wrap-login100-form-btn">
+                        <div class="login100-form-bgbtn"></div>
+                        <button type="submit" value="submit" class="login100-form-btn"  >
+                            Acessar sistema
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

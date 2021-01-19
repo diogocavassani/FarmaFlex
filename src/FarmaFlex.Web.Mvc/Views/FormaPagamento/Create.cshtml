@@ -1,0 +1,35 @@
+﻿@model APIFarmaFlex.Domain.Models.FormaPagamento
+@using APIFarmaFlex.Domain.Enum
+
+<h4>Forma de Pagamento</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Descricao" class="control-label"></label>
+                <input asp-for="Descricao" class="form-control" />
+                <span asp-validation-for="Descricao" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="StatusForma" class="control-label">Status</label>
+                <select asp-for="StatusForma" asp-items="Html.GetEnumSelectList<StatusEnum>()" class="form-control">
+                    <option></option>
+                </select>
+                <span asp-validation-for="StatusForma" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <a asp-action="Index" class="btn btn-danger fa fa-arrow-left fa-2x text-decoration-none" title="Voltar"></a>
+                <button type="submit" class="btn-success fa fa-save fa-2x">
+                </button>
+
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

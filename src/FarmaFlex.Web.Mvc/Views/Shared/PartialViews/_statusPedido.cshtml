@@ -1,0 +1,16 @@
+﻿@model FarmaFlex.Web.Mvc.Extentions.ViewComponents.Helpers.ContadorStatusPedido
+
+<div class="col">
+    <!-- small box -->
+    <div class="@Model.ClassContent">
+        <div class="inner">
+            <h3>@Model.TotalStatus</h3>
+
+            <p>@Model.Status</p>
+        </div>
+        <div class="icon">
+            <i class="ion ion-pie-graph"></i>
+        </div>
+        <a asp-action="Index" asp-route-status="@Model.Status" class="small-box-footer">Detalhes</a>
+    </div>
+ </div>

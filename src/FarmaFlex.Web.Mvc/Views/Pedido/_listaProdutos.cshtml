@@ -1,0 +1,32 @@
+﻿@model APIFarmaFlex.Domain.Models.Pedido
+
+
+<h1>Lista Produtos</h1>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Produto</th>
+            <th>Quantidade</th>
+            <th>Total</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.ItensPedidos)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(t => item.Produto.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(t => item.QuantidadeProduto)
+            </td>
+            <td>
+                @{float total = item.QuantidadeProduto * item.Produto.Preco;
+                   var teste =  total.ToString("C");}
+                @Html.DisplayFor(t => teste)
+            </td>
+        </tr>
+        }
+
+    </tbody>
+</table>

@@ -1,0 +1,24 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+@await Html.PartialAsync("PartialViews/_head")
+<body class="hold-transition sidebar-mini layout-fixed">
+    <div class="wrapper">
+
+        @await Html.PartialAsync("PartialViews/_barraSuperior")
+
+        @await Html.PartialAsync("PartialViews/_barraDireita")
+
+
+        <div class="content-wrapper">
+            <section class="content">
+                @RenderBody()
+            </section>
+                    
+                </div>
+
+    @await Html.PartialAsync("PartialViews/_footer")
+    @await Html.PartialAsync("PartialViews/_scripts")
+    @RenderSection("Scripts", required: false)
+
+</body>
+</html>

@@ -1,0 +1,96 @@
+﻿@model IEnumerable<APIFarmaFlex.Domain.Models.Produto>
+@{
+    ViewData["Title"] = "Lista Produtos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h1 class="m-0 text-dark">Produtos</h1>
+<div class="card-body  p-0">
+
+    <a class="btn btn-outline-success fa fa-plus text-decoration-none" asp-controller="Produto" asp-action="Create">&emsp;Novo</a>
+
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+
+                <th>
+                    Codigo
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Nome)
+                </th>
+                <th>
+                    Descrição
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.EAN)
+                </th>
+                <th>
+                    Preço
+                </th>
+                <th>
+                    Preço Promocional
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null)
+            {
+                @foreach (var item in Model)
+                {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProdutoId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Categoria.Descricao)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EAN)
+                </td>
+                <td>
+                    @{
+                        var valor = item.Preco.ToString("C");
+                    }
+                    @Html.DisplayFor(modelItem => valor)
+                </td>
+                <td>
+                    @{
+                        var valorPromo = item.PrecoPromocional.ToString("C");
+                    }
+                    @Html.DisplayFor(modelItem => valorPromo)
+                </td>
+                <td>
+                    <button type="button" class="btn btn-warning">
+                        <a asp-action="Edit" asp-route-id="@item.ProdutoId" class="fa fa-pencil fa-2x text-decoration-none" title="Editar"></a>
+                    </button>
+                    <button type="button" class="btn btn-success">
+                        <a asp-action="Details" asp-route-id="@item.ProdutoId" class="fa fa-search fa-2x text-decoration-none" title="Detalhes"></a>
+                    </button>
+                    <button type="button" class="btn btn-danger">
+                        <a asp-action="Delete" asp-route-id="@item.ProdutoId" class="fa fa-trash fa-2x text-decoration-none" title="Excluir"></a>
+                    </button>
+                    @if (item.StatusProduto == APIFarmaFlex.Domain.Enum.StatusEnum.Ativo)
+                    {
+                        <button type="submit" class="btn btn-dark">
+                            <a asp-action="AlterarStatus" asp-route-id="@item.ProdutoId" class="fa fa-unlock-alt fa-2x text-decoration-none" title="Inativar"></a>
+                        </button>
+                    }
+                    else
+                    {
+                        <button type="submit" value="submit" class="btn btn-dark">
+                            <a asp-action="AlterarStatus" asp-route-id="@item.ProdutoId" class="fa fa-send fa-2x text-decoration-none" title="Ativar"></a>
+                        </button>
+                    }
+                </td>
+
+            </tr>
+                }}
+
+        </tbody>
+    </table>
+</div>

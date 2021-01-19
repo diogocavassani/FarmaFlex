@@ -1,0 +1,32 @@
+﻿@model APIFarmaFlex.Domain.Models.FormaPagamento
+
+<div>
+    <h4>FormaPagamento</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.FormaPagamentoId)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.FormaPagamentoId)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Descricao)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Descricao)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.StatusForma)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.StatusForma)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Index" class="btn btn-danger fa fa-arrow-left fa-2x text-decoration-none" title="Voltar"></a>
+    <a asp-action="Edit" asp-route-id="@Model.FormaPagamentoId" class="btn btn-warning fa fa-pencil fa-2x text-decoration-none" title="Editar"></a>
+</div>
+
+
